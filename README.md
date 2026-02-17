@@ -157,63 +157,73 @@ Papéis de usuário disponíveis:
     - Cada item da lista deve mostrar o título, autor e uma breve descrição do post.
     - Incluir um campo de busca para filtrar posts por palavras-chave.
 
-(Print-screen da tela desenvolvida mobile)
+![feed](https://github.com/user-attachments/assets/6204e8e0-bc43-4e21-9f1b-98c89f8795a6)
 
 2. *Página de leitura de post*:
     - Exibir o conteúdo completo de um post selecionado.
     - Permitir comentários nos posts (opcional).
 
-(Print-screen da tela desenvolvida mobile)
+![listarUnicoAluno](https://github.com/user-attachments/assets/d5f5f517-14e2-4761-bd10-33a93afbc8d8)
 
 3. *Página de criação de postagens*:
     - Formulário para que docentes possam criar postagens.
     - Campos para título, conteúdo e autor.
     - Botão para enviar o post ao servidor.
-
-(Print-screen da tela desenvolvida mobile)
+    - 
+![formularioPostagem](https://github.com/user-attachments/assets/d62e5f6d-10ae-42a9-a589-563f7199d2da)
 
 4. *Página de edição de postagens*:
     - Formulário para que os(as) professores(as) possam editar postagens existentes.
     - Carregar os dados atuais do post para edição.
     - Botão para salvar as alterações.
 
-(Print-screen da tela desenvolvida mobile)
+![edicaoPostagem](https://github.com/user-attachments/assets/57568966-76c7-47e6-bf8d-79135da280aa)
 
 5. *Página de criação de professores*:
     - Formulário para que professores possam cadastrar outros professores.
     - Botão para enviar o post ao servidor.
 
-(Print-screen da tela desenvolvida mobile)
+![FormularioCadastroPostagem](https://github.com/user-attachments/assets/4549e71f-81ea-445d-b94a-ae446c2992f1)
 
 6. *Página de edição de professores*:
     - Formulário para que professores possam editar docentes já cadastrados.
     - Botão para salvar as alterações
 
-(Print-screen da tela desenvolvida mobile)
+![editarUsuario](https://github.com/user-attachments/assets/c9963889-923f-45f7-95eb-989c472265fc)
 
 7. *Página de listagem de professores*:
     - Página para listagem paginada dos professores e, nas tabelas para
     cada professor, teremos um botão de editar que leva para a página
-    de edição e um botão de excluir que vai deletar o docente do sistema.
+    de edição e um botão de excluir que vai deletar o docente do sistema. 
 
-(Print-screen da tela desenvolvida mobile)
+![usuariosGerenciar](https://github.com/user-attachments/assets/8d9a4d02-f8d0-404c-b305-b9bb49f4c9c1)
 
 8. *Replique os requisitos 5, 6 e 7 para estudantes*:
     - Seguindo o padrão de páginas administrativas feitas para professores, faça o mesmo para alunos.
 
-(Print-screen da tela desenvolvida mobile)
+![usuariosGerenciar](https://github.com/user-attachments/assets/fc6a5b24-268a-4ec6-9985-bf4af38a856b)
 
 9. *Página administrativa*:
     - Exibir uma lista de todas as postagens, com opções para editar e excluir cada post.
     - Botões para editar e excluir postagens específicas.
 
-(Print-screen da tela desenvolvida mobile)
+![listagemDePostagemADM](https://github.com/user-attachments/assets/fb038616-6e39-4001-8132-3711a1f3b11e)
+
+Bônus adicionados.
+
+
+![dash1](https://github.com/user-attachments/assets/f46a44ec-c26a-436f-9364-aa3885be9a49)
+
+Bônus adicionados.
+
+
+![Dash2](https://github.com/user-attachments/assets/1266554f-2214-4b25-8de5-755a4e6af3af)
 
 10. *Autenticação e autorização*:
     - Implementar login para professores.
     - Garantir que apenas usuários autenticados possam acessar as páginas de criação, edição e administração de postagens.
 
-(Print-screen da tela desenvolvida mobile)
+![login](https://github.com/user-attachments/assets/92fa11d3-0fea-4bf6-b9fe-82d058efa9b7)
 
 ## Configuração de ambiente.
 Recomenda-se que os pré-requisitos de instalação de tecnologia em seu ambiente de execução sejam os seguintes, listados abaixo. Após verificar as tecnologicas instaladas, siga o procedimento em seguida para inicializar o projeto.
@@ -330,7 +340,7 @@ As tarefas foram organizadas com base nas experiências adquiridas nos projetos 
 
 O projeto foi construído tanto para execução de testes e validações de novas features através do Expo Go para a disponibilização da aplicação para usuários. Destaco ainda que o Render possui planos de serviços gratuitos por curtos períodos de tempo e foi considerado para este projeto que a aplicação suprisse esta linha de serviços. Este sem dúvida, foi o ponto crucial da etapa de tempo de desenvolvimento do projeto. O banco de dados PostgreSQL utilizado, por exemplo, ficará disponível em produção até o dia 19/03/2026 conforme alerta exibido na plataforma e anexado neste documento como evidência.
 
-<img width="1895" height="893" alt="Captura de tela 2025-10-12 121612" src="https://github.com/user-attachments/assets/fed3a165-a6ca-4018-bc89-9ab05291aee8" />
+<img width="1915" height="940" alt="bancoDataFinal" src="https://github.com/user-attachments/assets/169656af-eb32-41b7-9a37-7208a81619b7" />
 
 A frequência de esforço empregado para o desenvolvimento das features foram diárias e contínuas para que fosse honrado, primeiramente, os requisitos técnicos e funcionais e posteriormente adicionado novas tecnologias considerando ainda as questões do prazo de desenvolvimento citado acima. 
 
@@ -359,14 +369,14 @@ Todas as tecnologias, ferramentas e padrões de arquitetura utilizados neste pro
 ## Entregas
 
 - *Apresentação em vídeo gravado*  
-    - Conforme procedimento validado na fase 01, 02, 03 e 04 da pós-tech, o vídeo de apresentação gravado foi disponibilizado na plataforma Youtube para acesso irrestrito dos professores e avaliadores. O vídeo foi gravado com o intuito de apresentar apenas o essencial do projeto para que não ficasse uma apresentação muita longa, sendo complementar com a documentação do projeto. O vídeo pode ser acessado através da seguinte URL: 
+    - Conforme procedimento validado na fase 01, 02, 03 e 04 da pós-tech, o vídeo de apresentação gravado foi disponibilizado na plataforma Youtube para acesso irrestrito dos professores e avaliadores. O vídeo foi gravado com o intuito de apresentar apenas o essencial do projeto para que não ficasse uma apresentação muita longa, sendo complementar com a documentação do projeto. O vídeo pode ser acessado através da seguinte URL: https://youtu.be/aAyrQvyOUPU
 
 - *Código-fonte do projeto*  
     - O código-fonte e a documentação está disponibilizado na plataforma GitHub no repositório do projeto e pode ser acessado através da URL: https://github.com/MyNameIsGustavo/TechChallengeFase4
 
 - *Arquivos utilizados na apresentação*  
-    - Todos os arquivos utilizados na apresentação do vídeo serão entregues em forma de evidência neste documento "README.md" do projeto. Durante o processo da apresentação foi criado slides de exemplicação do conteúdo e, está evidência, também será entregue e disponibilizada através da seguinte URL: 
-
+    - Todos os arquivos utilizados na apresentação do vídeo serão entregues em forma de evidência neste documento "README.md" do projeto. Durante o processo da apresentação foi criado slides de exemplicação do conteúdo e, está evidência, também será entregue e disponibilizada através da seguinte URL: https://gamma.app/docs/Chronos-Fase-04-qua1xhjydv4w8rn
+  
 ## Bônus
 
 O Tech Challenge desta fase foi identilizado, primeiramente, para entrega dos requisitos obrigatórios da fase. Posteriormente, foi incrementado uma nova etapa para além de entregar todas os requisitos técnicos e funcionais solicitados na quarta etapa da pós-tech da FIAP, também foi entregue features adicionais que já haviam sido complementadas nas fases anteriores.
@@ -387,4 +397,7 @@ Durante o desenvolvimento, utilizei tecnologias e bibliotecas fundamentais do am
 
 Além da funcionalidade principal, tive a preocupação de entregar uma aplicação com boa experiência do usuário, atenção ao design, fluidez na navegação e organização consistente do projeto. Apesar dos desafios enfrentados ao longo do processo, todos os requisitos técnicos foram atendidos com sucesso.
 
+
 Encerrar esta etapa com uma aplicação mobile funcional, bem estruturada e alinhada às boas práticas do mercado representa um avanço importante na minha evolução como desenvolvedor, trazendo satisfação profissional e maior confiança para os próximos desafios da pós-tech.
+
+
