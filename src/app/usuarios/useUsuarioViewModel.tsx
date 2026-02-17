@@ -10,6 +10,10 @@ import { useIsFocused } from "@react-navigation/native";
 export const UseUsuarioViewModel = () => {
     const [alerta, setAlerta] = useState({ exibe: false, titulo: "", mensagem: "", onConfirm: () => { } });
     const [usuarios, setUsuarios] = useState<IUsuario[]>([]);
+    const [pagina, setPagina] = useState(0);
+    const [carregando, setCarregando] = useState(false);
+    const [temMais, setTemMais] = useState(true);
+
     const [papelUsuarioSelecionado, setPapelUsuarioSelecionado] = useState<number | undefined>(undefined);
     const { tokenJWT, logout } = useAutenticacao();
     const usuarioServico = new UsuarioService();
@@ -17,33 +21,42 @@ export const UseUsuarioViewModel = () => {
     type NavigationProps = NativeStackNavigationProp<RotasAutenticadasParamList, "Usuarios">;
     const ehFocadoNaTela = useIsFocused();
 
-    const buscarUsuarios = async () => {
-        if (!tokenJWT) return;
+    const LIMITE = 10;
 
-        try {
-            const informacoesUsuarios = await usuarioServico.listarTodos(
-                tokenJWT,
-                papelUsuarioSelecionado !== undefined
-                    ? { tipoUsuario: papelUsuarioSelecionado }
-                    : undefined
+    async function carregarUsuarios(reset = false) {
+        if (!tokenJWT || carregando) return;
+        if (!temMais && !reset) return;
+
+        setCarregando(true);
+
+        const paginaAtual = reset ? 1 : pagina;
+
+        const resposta = await usuarioServico.listarTodos(tokenJWT, {
+            pagina: paginaAtual,
+            limite: LIMITE,
+            tipoUsuario: papelUsuarioSelecionado
+        });
+
+        if (resposta) {
+            const usuariosFormatados = resposta.content.map(usuario => ({
+                ...usuario,
+                dataCadastro: usuario.dataCadastro
+                    ? new Intl.DateTimeFormat("pt-BR").format(
+                        new Date(usuario.dataCadastro)
+                    )
+                    : ""
+            }));
+
+            setUsuarios(prev =>
+                reset ? usuariosFormatados : [...prev, ...usuariosFormatados]
             );
 
-            if (informacoesUsuarios && Array.isArray(informacoesUsuarios)) {
-                const usuariosFormatados = informacoesUsuarios.map(usuario => ({
-                    ...usuario,
-                    dataCadastro: usuario.dataCadastro
-                        ? new Intl.DateTimeFormat('pt-BR').format(new Date(usuario.dataCadastro))
-                        : ''
-                }));
-
-                setUsuarios(usuariosFormatados);
-            } else {
-                setUsuarios([]);
-            }
-        } catch (error) {
-            console.error("Erro ao buscar usuários:", error);
+            setPagina(paginaAtual + 1);
+            setTemMais(paginaAtual < resposta.totalPages);
         }
-    };
+
+        setCarregando(false);
+    }
 
     const abrirConfirmacaoExclusao = (id: number) => {
         setAlerta({
@@ -60,7 +73,7 @@ export const UseUsuarioViewModel = () => {
     const deletarUsuario = async (id: number) => {
         if (!tokenJWT) return;
         try {
-            if (await usuarioServico.deletar(tokenJWT, id)) buscarUsuarios();
+            if (await usuarioServico.deletar(tokenJWT, id)) carregarUsuarios();
         } catch (error) {
             console.error("Erro ao remover usuário:", error);
         }
@@ -83,7 +96,10 @@ export const UseUsuarioViewModel = () => {
 
     useEffect(() => {
         if (tokenJWT && ehFocadoNaTela) {
-            buscarUsuarios();
+            setUsuarios([]);
+            setPagina(1);
+            setTemMais(true);
+            carregarUsuarios(true);
         }
     }, [ehFocadoNaTela, tokenJWT, papelUsuarioSelecionado]);
 
@@ -96,6 +112,8 @@ export const UseUsuarioViewModel = () => {
         abrirConfirmacaoExclusao,
         selecionarUsuario,
         vaiParaFormularioUsuario: () => navegacao.navigate("FormularioUsuario"),
-        setPapelUsuarioSelecionado
+        setPapelUsuarioSelecionado,
+        carregarUsuarios,
+        carregando
     };
 }

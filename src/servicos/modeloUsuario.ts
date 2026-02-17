@@ -2,6 +2,14 @@ import { LoginValidacao } from "../schemas/login.schema";
 import { IUsuario, IUsuarioAlteracao, IUsuarioEdicao } from "../modelos/IUsuario";
 import { chronosAPI } from "../conexoes/chronosAPI";
 
+export interface IPaginacao<T> {
+    content: T[];
+    page: number;
+    limit: number;
+    totalElements: number;
+    totalPages: number;
+}
+
 export class UsuarioService {
 
     private readonly baseRoute = "/usuarios";
@@ -51,14 +59,7 @@ export class UsuarioService {
         }
     }
 
-    async listarTodos(
-        tokenJWT: string,
-        params?: {
-            pagina?: number;
-            limite?: number;
-            tipoUsuario?: number;
-        }
-    ) {
+    async listarTodos(tokenJWT: string, params?: { pagina?: number; limite?: number; tipoUsuario?: number; }): Promise<IPaginacao<IUsuario> | null> {
         try {
             const searchParams = new URLSearchParams();
 
@@ -75,15 +76,9 @@ export class UsuarioService {
             }
 
             const queryString = searchParams.toString();
-            const url = queryString
-                ? `${this.baseRoute}?${queryString}`
-                : this.baseRoute;
+            const url = queryString ? `${this.baseRoute}?${queryString}` : this.baseRoute;
 
-            const { data } = await chronosAPI.get<IUsuario[]>(
-                url,
-                this.authHeader(tokenJWT)
-            );
-
+            const { data } = await chronosAPI.get<IPaginacao<IUsuario>>(url, this.authHeader(tokenJWT));
             return data;
         } catch {
             return null;

@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from "react-native"
+import { ActivityIndicator, FlatList, StyleSheet, Text, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { CartaoLista } from "../../componentes/cartaoLista/cartaoLista"
 import { UseUsuarioViewModel } from "./useUsuarioViewModel";
@@ -14,7 +14,10 @@ export const UsuarioView = () => {
         setAlerta,
         abrirConfirmacaoExclusao,
         selecionarUsuario,
-        setPapelUsuarioSelecionado } = UseUsuarioViewModel();
+        setPapelUsuarioSelecionado,
+        carregarUsuarios,
+        carregando
+    } = UseUsuarioViewModel();
 
     const cartao = ({ item }: any) => {
         let imagem = "https://avatars.githubusercontent.com/u/103784593?v=4";
@@ -66,7 +69,11 @@ export const UsuarioView = () => {
                 data={usuarios}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={cartao}
-                contentContainerStyle={styles.lista}
+                onEndReached={() => carregarUsuarios?.()}
+                onEndReachedThreshold={0.2}
+                ListFooterComponent={
+                    carregando ? <ActivityIndicator size="small" /> : null
+                }
                 showsVerticalScrollIndicator={false}
             />
             <Alerta
