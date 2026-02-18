@@ -1,5 +1,5 @@
-import React from "react";
-import { Image, StyleSheet } from "react-native"
+import React, { useEffect } from "react";
+import { Alert, Image, StyleSheet } from "react-native"
 import { Button, TextInput } from "react-native-paper"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { useLoginViewModel } from "./useLoginViewModel";
@@ -7,8 +7,16 @@ import { Controller } from "react-hook-form"
 import { CarregadorTela } from "../../componentes/carregador/carregador";
 
 export const LoginView = () => {
-    const { handleSubmit, control, errors, login, isSubmitting } = useLoginViewModel();
-
+    const { handleSubmit, control, errors, login, isSubmitting, erroLogin } = useLoginViewModel();
+    useEffect(() => {
+        if (erroLogin) {
+            Alert.alert(
+                "Verifique suas credenciais",
+                erroLogin,
+                [{ text: "OK" }]
+            );
+        }
+    }, [erroLogin]);
     return (
         <SafeAreaView style={styles.container}>
             {isSubmitting && <CarregadorTela texto="Entrando..." />}

@@ -87,7 +87,10 @@ export const FormularioPostagensView = () => {
                     <Controller
                         control={control}
                         name="visibilidade"
-                        rules={{ required: "Selecione a visibilidade" }}
+                        rules={{
+                            validate: (value) =>
+                                value !== undefined || "Selecione a visibilidade",
+                        }}
                         render={({ field }) => (
                             <>
                                 <Dropdown
